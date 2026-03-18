@@ -1,0 +1,5 @@
+max_agents_num=5
+AGENTS_LIST=""
+ROOT_NAME=""
+TODO_LIST=""
+LOG_FILE=""

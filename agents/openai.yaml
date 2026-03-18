@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Multi Agents"
+  short_description: "Strict session-resume TODO orchestration with role audit logs"
+  default_prompt: "Use $codex-multi-agents to bind unique worker SESSION_IDs, start workers via codex resume, dispatch TODO tasks, and collect detailed per-role audit logs."
