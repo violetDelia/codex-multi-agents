@@ -32,18 +32,18 @@
 # 查询名单
 codex-multi-agents-list.sh -file <AGENTS_LIST> -status
 
-# 向角色发起会话
-codex-multi-agents-tmux.sh -talk -from <NAME> -to <other> -session-id <other_session> -message "<你要说的话>" -log <LOG_FILE>
+# 向角色发起会话（不要手填 session-id，会按 agents-list 中的“会话”字段自动解析）
+codex-multi-agents-tmux.sh -talk -from <NAME> -to <other> -agents-list <AGENTS_LIST> -message "<你要说的话>" -log <LOG_FILE>
 
 # 新增任务
 codex-multi-agents-task.sh -file <TODO.md> -new -info "<task>" -to <agent>
 
-# 分发任务
-codex-multi-agents-task.sh -file <TODO.md> -dispatch -task_id <task_id> -to <agent>
+# 分发任务（自动同步角色状态，并向目标角色发消息）
+codex-multi-agents-task.sh -file <TODO.md> -dispatch -task_id <task_id> -to <agent> -agents-list <AGENTS_LIST> -message "请处理任务 <task_id>，描述：<描述>。将过程记录在 <记录文件>，完成后回报，并申请下一阶段任务。"
 
-# 完成任务
-codex-multi-agents-task.sh -file <TODO.md> -done -task_id <task_id> -log <log_file>
+# 完成任务（自动同步角色状态）
+codex-multi-agents-task.sh -file <TODO.md> -done -task_id <task_id> -log <log_file> -agents-list <AGENTS_LIST>
 
-# 暂停任务
-codex-multi-agents-task.sh -file <TODO.md> -pause -task_id <task_id>
+# 暂停任务（自动同步角色状态）
+codex-multi-agents-task.sh -file <TODO.md> -pause -task_id <task_id> -reason "<reason>" -agents-list <AGENTS_LIST>
 ```

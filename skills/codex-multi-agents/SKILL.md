@@ -57,6 +57,7 @@ description: 基于 tmux 的多会话协作框架。
 ## 角色交互
 - 管理员（`ROOT_NAME`）负责分发任务与协调角色。
 - 角色间沟通统一通过 `codex-multi-agents-tmux.sh -talk` 执行。
+- 管理员分发任务时，优先使用 `codex-multi-agents-task.sh -dispatch -agents-list <agents-lists.md> -message <text>` 一步完成任务状态迁移、角色状态同步与首条任务消息发送，不再采用“先 `-dispatch` 再单独 `-talk`”的旧流程。
 - 发送消息时必须明确接收对象、目标会话和日志路径（`-log`）。
 - 普通角色完成任务后，需向管理员会话回报完成情况、后续计划和任务日志路径。
 - 任务分发应明确输入与输出：输入为任务清单与名单，输出为已分发任务与对话日志。

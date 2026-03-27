@@ -14,7 +14,7 @@
 ## 执行建议
 1. 先确认当前任务目标、输入和边界。
 2. 仅在授权工作树内实现和修改。
-3. 完成后回写任务状态并通知相关角色。
+3. 完成后向管理员回报结果，由管理员使用任务脚本回写任务状态。
 4. 将本次操作摘要写入 `memory.md`。
 
 ## 记录格式示例
@@ -29,15 +29,15 @@
 # 查询名单
 codex-multi-agents-list.sh -file <AGENTS_LIST> -status
 
-# 向其他角色发起会话
-codex-multi-agents-tmux.sh -talk -from <NAME> -to <other> -session-id <other_session> -message "<你要说的话>" -log <LOG_FILE>
+# 向其他角色发起会话（不要手填 session-id，会按 agents-list 中的“会话”字段自动解析）
+codex-multi-agents-tmux.sh -talk -from <NAME> -to <other> -agents-list <AGENTS_LIST> -message "<你要说的话>" -log <LOG_FILE>
 
 # 新增任务
 codex-multi-agents-task.sh -file <TODO.md> -new -info "<task>" -to <agent>
 
-# 完成任务
-codex-multi-agents-task.sh -file <TODO.md> -done -task_id <task_id> -log <log_file>
+# 完成任务（通常由管理员执行，并自动同步角色状态）
+codex-multi-agents-task.sh -file <TODO.md> -done -task_id <task_id> -log <log_file> -agents-list <AGENTS_LIST>
 
-# 暂停任务
-codex-multi-agents-task.sh -file <TODO.md> -pause -task_id <task_id>
+# 暂停任务（通常由管理员执行，并自动同步角色状态）
+codex-multi-agents-task.sh -file <TODO.md> -pause -task_id <task_id> -reason "<reason>" -agents-list <AGENTS_LIST>
 ```
